@@ -35,11 +35,11 @@ public class Call {
     }
 
     @PostRemove
-    public void onPostUdapte(){
+    public void onPostUpdate(){
         CallCanceled callCanceled = new CallCanceled(this);
         callCanceled.publishAfterCommit();
     }
-    
+
     @PreRemove
     public void onPreRemove() {}
 
