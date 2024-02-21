@@ -31,11 +31,15 @@ public class Call {
     public void onPostPersist() {
         Called called = new Called(this);
         called.publishAfterCommit();
+        
+    }
 
+    @PostRemove
+    public void onPostUdapte(){
         CallCanceled callCanceled = new CallCanceled(this);
         callCanceled.publishAfterCommit();
     }
-
+    
     @PreRemove
     public void onPreRemove() {}
 
