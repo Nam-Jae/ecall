@@ -50,9 +50,9 @@ public class Dispatch {
         Dispatch dispatch = new Dispatch();
         dispatch.setId(called.getId());
         dispatch.setCarId(called.getCarId());
-        dispatch.setCarType("tow car");
-        dispatch.setWorkerId("workerA");
-        dispatch.setDispatchTime("now+1");
+        dispatch.setCarType("Ambulance");
+        dispatch.setWorkerId("worker"+ called.getId());
+        dispatch.setDispatchTime(called.getAccidentTime()+"+3min");
         repository().save(dispatch);
 
         Dispatched dispatched = new Dispatched(dispatch);
@@ -63,9 +63,9 @@ public class Dispatch {
         Dispatch dispatch = new Dispatch();
         dispatch.setId(callCanceled.getId());
         dispatch.setCarId(callCanceled.getCarId());
-        dispatch.setCarType("tow car");
-        dispatch.setWorkerId("workerA");
-        dispatch.setDispatchTime("now+1");
+        dispatch.setCarType("Ambulance");
+        dispatch.setWorkerId("worker"+ callCanceled.getId());
+        dispatch.setDispatchTime(callCanceled.getAccidentTime()+"+1min");
         repository().save(dispatch);
 
         DispatchCanceled dispatchCanceled = new DispatchCanceled(dispatch);

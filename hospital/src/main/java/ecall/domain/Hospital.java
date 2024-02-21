@@ -27,11 +27,8 @@ public class Hospital {
 
     @PostPersist
     public void onPostPersist() {
-        Reserved reserved = new Reserved(this);
-        reserved.publishAfterCommit();
-
-        Canceled canceled = new Canceled(this);
-        canceled.publishAfterCommit();
+        // Canceled canceled = new Canceled(this);
+        // canceled.publishAfterCommit();
     }
 
     public static HospitalRepository repository() {
@@ -43,34 +40,31 @@ public class Hospital {
 
     //<<< Clean Arch / Port Method
     public static void book(Dispatched dispatched) {
-        //implement business logic here:
-
-        /** Example 1:  new item 
         Hospital hospital = new Hospital();
+        hospital.setId(dispatched.getId());
+        hospital.setHospitalId("HOSPITAL_"+String.valueOf(dispatched.getId()));
+        hospital.setHospitalName("HOSPITAL_NAME_"+String.valueOf(dispatched.getId()));
+        hospital.setAddress("Seoul");
         repository().save(hospital);
 
         Reserved reserved = new Reserved(hospital);
         reserved.publishAfterCommit();
-        */
-
-        /** Example 2:  finding and process
         
-        repository().findById(dispatched.get???()).ifPresent(hospital->{
-            
-            hospital // do something
-            repository().save(hospital);
-
-            Reserved reserved = new Reserved(hospital);
-            reserved.publishAfterCommit();
-
-         });
-        */
-
     }
 
     //>>> Clean Arch / Port Method
     //<<< Clean Arch / Port Method
     public static void bookCancel(DispatchCanceled dispatchCanceled) {
+        Hospital hospital = new Hospital();
+        hospital.setId(dispatchCanceled.getId());
+        hospital.setHospitalId("HOSPITAL_"+String.valueOf(dispatchCanceled.getId()));
+        hospital.setHospitalName("HOSPITAL_NAME_"+String.valueOf(dispatchCanceled.getId()));
+        hospital.setAddress("Seoul");
+        repository().save(hospital);
+
+        Canceled canceled = new Canceled(hospital);
+        canceled.publishAfterCommit();
+
         //implement business logic here:
 
         /** Example 1:  new item 
